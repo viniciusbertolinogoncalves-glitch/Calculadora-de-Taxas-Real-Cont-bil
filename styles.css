@@ -1,0 +1,362 @@
+/* ============================================================
+   Real Contábil - Calculadora de Taxas de Cartão
+   Paleta sóbria: azul escuro, cinza e branco.
+   ============================================================ */
+
+:root {
+    --azul-escuro: #0b2545;
+    --azul: #13315c;
+    --azul-claro: #1f4e8c;
+    --cinza-900: #1f2937;
+    --cinza-700: #374151;
+    --cinza-500: #6b7280;
+    --cinza-300: #d1d5db;
+    --cinza-100: #f3f4f6;
+    --cinza-50:  #f9fafb;
+    --branco: #ffffff;
+    --verde: #0f766e;
+    --verde-claro: #ecfdf5;
+    --wpp: #25d366;
+    --wpp-escuro: #128c7e;
+    --sombra: 0 4px 14px rgba(11, 37, 69, 0.08);
+    --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    color: var(--cinza-900);
+    background: var(--cinza-50);
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ----------- Cabeçalho ----------- */
+.site-header {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    padding: 16px 0;
+    border-bottom: 3px solid var(--azul-claro);
+}
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.brand-mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 8px;
+    background: var(--branco);
+    color: var(--azul-escuro);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+.brand-text h1 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 0.3px;
+}
+.brand-text p {
+    margin: 0;
+    font-size: 13px;
+    color: #c7d2fe;
+}
+.header-nav {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.header-nav a {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 14px;
+}
+.header-nav a:hover {
+    color: var(--branco);
+    text-decoration: underline;
+}
+
+/* ----------- Hero ----------- */
+.hero {
+    background: linear-gradient(135deg, var(--azul-escuro), var(--azul));
+    color: var(--branco);
+    padding: 48px 0 64px;
+    text-align: center;
+}
+.hero h2 {
+    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 700;
+}
+.hero p {
+    margin: 0 auto;
+    max-width: 720px;
+    color: #cbd5e1;
+    font-size: 16px;
+}
+
+/* ----------- Cards ----------- */
+main {
+    padding: 32px 20px 60px;
+}
+.card {
+    background: var(--branco);
+    border-radius: var(--radius);
+    box-shadow: var(--sombra);
+    padding: 28px;
+    margin-bottom: 28px;
+    border: 1px solid var(--cinza-100);
+}
+.card h3 {
+    margin: 0 0 18px;
+    color: var(--azul-escuro);
+    font-size: 20px;
+}
+
+/* ----------- Formulário ----------- */
+.form-card {
+    margin-top: -40px;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px 18px;
+}
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cinza-700);
+}
+.field input,
+.field select {
+    padding: 10px 12px;
+    border: 1px solid var(--cinza-300);
+    border-radius: 8px;
+    background: var(--branco);
+    font-size: 15px;
+    color: var(--cinza-900);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: var(--azul-claro);
+    box-shadow: 0 0 0 3px rgba(31, 78, 140, 0.15);
+}
+
+.form-actions {
+    margin-top: 22px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.05s;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary {
+    background: var(--azul-escuro);
+    color: var(--branco);
+}
+.btn-primary:hover { background: var(--azul-claro); }
+.btn-ghost {
+    background: transparent;
+    color: var(--cinza-700);
+    border-color: var(--cinza-300);
+}
+.btn-ghost:hover { background: var(--cinza-100); }
+
+/* ----------- Destaque da melhor oferta ----------- */
+.best-offer {
+    background: linear-gradient(135deg, #0f766e, #0d9488);
+    color: var(--branco);
+    border: none;
+}
+.best-offer h3 {
+    color: var(--branco);
+    margin-bottom: 6px;
+    font-size: 16px;
+    opacity: 0.9;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.best-offer .best-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+.best-offer .best-value {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 4px 0 0;
+}
+.best-offer .best-meta {
+    margin-top: 8px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* ----------- Tabela de ranking ----------- */
+.table-card { padding: 0; overflow: hidden; }
+.table-header {
+    padding: 22px 24px 12px;
+    border-bottom: 1px solid var(--cinza-100);
+}
+.table-header h3 { margin-bottom: 4px; }
+.muted { color: var(--cinza-500); font-size: 14px; margin: 0; }
+.small { font-size: 12px; }
+
+.table-wrapper {
+    overflow-x: auto;
+}
+.ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 780px;
+}
+.ranking-table th,
+.ranking-table td {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid var(--cinza-100);
+}
+.ranking-table thead th {
+    background: var(--cinza-50);
+    color: var(--cinza-700);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+.ranking-table tbody tr:hover { background: var(--cinza-50); }
+.ranking-table tbody tr.best-row {
+    background: var(--verde-claro);
+    font-weight: 600;
+}
+.ranking-table tbody tr.best-row:hover { background: #d1fae5; }
+.ranking-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--cinza-100);
+    color: var(--cinza-700);
+    font-weight: 700;
+    font-size: 12px;
+}
+.rank-badge.gold   { background: #fef3c7; color: #92400e; }
+.rank-badge.silver { background: #e5e7eb; color: #374151; }
+.rank-badge.bronze { background: #fed7aa; color: #9a3412; }
+
+.disclaimer {
+    padding: 12px 24px 20px;
+    font-size: 12px;
+    color: var(--cinza-500);
+    margin: 0;
+}
+
+/* ----------- Estado vazio ----------- */
+.empty-state {
+    border-left: 4px solid var(--azul-claro);
+}
+.empty-state code {
+    background: var(--cinza-100);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* ----------- Seção CTA ----------- */
+.cta-card {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 28px;
+    align-items: center;
+    background: var(--cinza-50);
+    border: 1px solid var(--cinza-100);
+}
+.cta-text h3 { margin-bottom: 10px; }
+.cta-text p { color: var(--cinza-700); margin: 0 0 14px; }
+.cta-list {
+    padding-left: 18px;
+    margin: 0;
+    color: var(--cinza-700);
+}
+.cta-list li { margin-bottom: 6px; }
+.cta-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+.btn-whatsapp {
+    background: var(--wpp);
+    color: var(--branco);
+    font-size: 16px;
+    padding: 14px 22px;
+    width: 100%;
+    text-align: center;
+}
+.btn-whatsapp:hover { background: var(--wpp-escuro); }
+
+/* ----------- Rodapé ----------- */
+.site-footer {
+    background: var(--azul-escuro);
+    color: #cbd5e1;
+    padding: 18px 0;
+    text-align: center;
+    font-size: 13px;
+}
+.site-footer p { margin: 0; }
+
+/* ----------- Responsivo ----------- */
+@media (max-width: 720px) {
+    .hero { padding: 36px 0 52px; }
+    .hero h2 { font-size: 22px; }
+    .form-card { margin-top: -32px; }
+    .card { padding: 20px; }
+    .cta-card {
+        grid-template-columns: 1fr;
+    }
+    .best-offer .best-value { font-size: 24px; }
+    .header-nav { display: none; }
+}

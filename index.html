@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de Taxas de Cartão - Real Contábil. Simule quanto você realmente recebe em cada maquininha e compare as principais adquirentes do mercado.">
+    <title>Real Contábil - Calculadora de Taxas de Cartão</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ============================================================
+         CABEÇALHO / BRANDING
+         Para alterar o nome ou slogan, edite o texto abaixo.
+         ============================================================ -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="brand-mark">RC</div>
+                <div class="brand-text">
+                    <h1>Real Contábil</h1>
+                    <p>Calculadora de Taxas de Cartão</p>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <a href="#calculadora">Calculadora</a>
+                <a href="#resultados">Resultados</a>
+                <a href="#real-contabil">Real Contábil</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         HERO / INTRODUÇÃO
+         ============================================================ -->
+    <section class="hero">
+        <div class="container">
+            <h2>Descubra qual maquininha paga mais por cada venda</h2>
+            <p>
+                Compare as principais adquirentes do Brasil, todas as bandeiras e
+                diferentes prazos de recebimento em poucos segundos. Ideal para
+                <strong>MEI e pequenas empresas</strong>.
+            </p>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- ============================================================
+             FORMULÁRIO DE SIMULAÇÃO
+             ============================================================ -->
+        <section id="calculadora" class="card form-card">
+            <h3>Simular venda</h3>
+            <form id="calc-form" class="calc-form" novalidate>
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="tipoPessoa">Tipo de pessoa</label>
+                        <select id="tipoPessoa" name="tipoPessoa" required>
+                            <option value="PF">Pessoa Física (PF)</option>
+                            <option value="PJ" selected>Pessoa Jurídica (PJ)</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="faturamento">Faturamento médio mensal em cartão (R$)</label>
+                        <input type="number" id="faturamento" name="faturamento"
+                               min="0" step="100" placeholder="Ex.: 10000" value="10000" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="tipoVenda">Tipo de venda</label>
+                        <select id="tipoVenda" name="tipoVenda" required>
+                            <option value="debito">Débito</option>
+                            <option value="credito_vista" selected>Crédito à vista</option>
+                            <option value="credito_parcelado">Crédito parcelado</option>
+                            <option value="pix">Pix via maquininha / QR Code</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="valorVenda">Valor da venda (R$)</label>
+                        <input type="number" id="valorVenda" name="valorVenda"
+                               min="0.01" step="0.01" placeholder="Ex.: 1000,00" value="1000" required>
+                    </div>
+
+                    <div class="field" id="parcelasField" hidden>
+                        <label for="parcelas">Número de parcelas</label>
+                        <input type="number" id="parcelas" name="parcelas"
+                               min="2" max="18" step="1" value="3">
+                    </div>
+
+                    <div class="field">
+                        <label for="prazo">Prazo de recebimento</label>
+                        <select id="prazo" name="prazo" required>
+                            <option value="D0">Na hora (D+0)</option>
+                            <option value="D1" selected>1 dia útil (D+1)</option>
+                            <option value="D14">14 dias</option>
+                            <option value="D30">30 dias (sem antecipação)</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="bandeira">Bandeira / meio</label>
+                        <select id="bandeira" name="bandeira" required>
+                            <option value="visa_master" selected>Visa / Mastercard</option>
+                            <option value="elo">Elo</option>
+                            <option value="hipercard">Hipercard / Hiper</option>
+                            <option value="amex">Amex</option>
+                            <option value="outras">Outras bandeiras</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Calcular</button>
+                    <button type="reset" class="btn btn-ghost">Limpar</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- ============================================================
+             RESULTADOS
+             ============================================================ -->
+        <section id="resultados" class="results" hidden>
+            <div class="best-offer card" id="bestOffer"></div>
+
+            <div class="card table-card">
+                <div class="table-header">
+                    <h3>Ranking de maquininhas para esta venda</h3>
+                    <p class="muted" id="resultMeta"></p>
+                </div>
+                <div class="table-wrapper">
+                    <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Maquininha / Plano</th>
+                                <th>Pessoa</th>
+                                <th>Bandeira</th>
+                                <th>Prazo</th>
+                                <th>Taxa (%)</th>
+                                <th>Taxa (R$)</th>
+                                <th>Líquido (R$)</th>
+                                <th>Diferença</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rankingBody"></tbody>
+                    </table>
+                </div>
+                <p class="disclaimer">
+                    Os valores são estimativas baseadas nas taxas cadastradas. Consulte
+                    sempre a adquirente para condições atualizadas.
+                </p>
+            </div>
+        </section>
+
+        <section id="semResultados" class="card empty-state" hidden>
+            <h3>Nenhuma maquininha elegível</h3>
+            <p>
+                Não encontramos planos cadastrados que atendam esta combinação
+                (tipo de pessoa, faturamento, tipo de venda, prazo e bandeira).
+                Ajuste os filtros ou cadastre novos planos no
+                <code>script.js</code>.
+            </p>
+        </section>
+
+        <!-- ============================================================
+             SEÇÃO REAL CONTÁBIL + CTA
+             Para alterar os textos institucionais, edite abaixo.
+             Para alterar o link do WhatsApp, edite apenas a variável
+             WHATSAPP_URL dentro do script.js.
+             ============================================================ -->
+        <section id="real-contabil" class="card cta-card">
+            <div class="cta-text">
+                <h3>Quer reduzir ainda mais suas taxas?</h3>
+                <p>
+                    A <strong>Real Contábil</strong> oferece diagnóstico completo
+                    de taxas e recebíveis. Analisamos o extrato da sua maquininha
+                    e indicamos a melhor combinação de adquirentes e planos para
+                    o seu perfil de vendas.
+                </p>
+                <ul class="cta-list">
+                    <li>Diagnóstico gratuito das taxas atuais</li>
+                    <li>Negociação e revisão de contratos com adquirentes</li>
+                    <li>Planejamento de fluxo de recebíveis</li>
+                    <li>Atendimento humano e especializado</li>
+                </ul>
+            </div>
+            <div class="cta-action">
+                <a id="whatsappBtn" class="btn btn-whatsapp" href="#" target="_blank" rel="noopener">
+                    Fale com a Real Contábil no WhatsApp
+                </a>
+                <p class="muted small">Resposta em horário comercial</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; <span id="year"></span> Real Contábil. Simulador informativo — taxas sujeitas a alteração pelas adquirentes.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
