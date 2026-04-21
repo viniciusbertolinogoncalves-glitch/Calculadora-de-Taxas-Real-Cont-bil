@@ -10,15 +10,19 @@
 <body>
     <!-- ============================================================
          CABEÇALHO / BRANDING
-         Para alterar o nome ou slogan, edite o texto abaixo.
+         - Para trocar o LOGO: substitua o arquivo na mesma pasta do
+           index.html e atualize o atributo src abaixo, se o nome mudar.
+         - Para alterar o título, edite o <h1> abaixo.
          ============================================================ -->
     <header class="site-header">
         <div class="container header-inner">
             <div class="brand">
-                <div class="brand-mark">RC</div>
+                <!-- TROCAR AQUI o caminho se o nome do arquivo mudar -->
+                <img src="logo-real-horizontal-transparente.png"
+                     alt="Real Contábil"
+                     class="brand-logo">
                 <div class="brand-text">
-                    <h1>Real Contábil</h1>
-                    <p>Calculadora de Taxas de Cartão</p>
+                    <h1>Calculadora de Taxas – Real Contábil</h1>
                 </div>
             </div>
             <nav class="header-nav">
@@ -193,9 +197,19 @@
         </section>
     </main>
 
+    <!-- ============================================================
+         RODAPÉ INSTITUCIONAL
+         Para alterar os dados da empresa ou contatos, edite as
+         linhas abaixo.
+         ============================================================ -->
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; <span id="year"></span> Real Contábil. Simulador informativo — taxas sujeitas a alteração pelas adquirentes.</p>
+            <p class="footer-line">
+                Real Contábil – W Real Serviços Administrativos Ltda – CNPJ 11.107.826/0001-70
+            </p>
+            <p class="footer-line">
+                Instagram: @wreal.contabilidade · E-mail: contato@wreal.com.br
+            </p>
         </div>
     </footer>
 
